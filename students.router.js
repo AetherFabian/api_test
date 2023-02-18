@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const database = require('./database').students;
+let database = require('./database').students;
 
 function runQueries(req, method) {
   const { username, password, email, name } = req.body;
@@ -19,7 +19,11 @@ function runQueries(req, method) {
         return user;
       }
     }),
-    deleteUser: () => database.pop(database.find(user => user.id == id)),
+    deleteUser: () => {
+      const user = database.find(user => user.id == id);
+      database = database.filter(user => user.id != id)
+      return user;
+    },
   };
   return queries[method]();
 }
