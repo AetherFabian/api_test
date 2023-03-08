@@ -18,6 +18,8 @@ app.use('/users', userRouter); // use a router to handle requests to /users
 app.use('/marvel', marvelMoviesRouter); // use a router to handle requests to /marvel
 
 app.use((err, req, res, next) => {
+  console.error(err);
+  return res.status(500).json({ message: err.message });
 });
 
 module.exports = app;
