@@ -1,3 +1,4 @@
+const express = require('express');
 const router = express.Router();
 const { getAllMovies, getMovieById, createMovie, updateMovie, deleteMovie } = require('./movies.controller');
 

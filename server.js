@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const userRouter = require('./src/api/login/users.router');
-const marvelMoviesRouter = require('./src/api/marvel/marvelMovies.router');
+const marvelMoviesRouter = require('./src/api/marvel/movies.router');
 
 const cors = require('cors');
 const morgan = require('morgan');
