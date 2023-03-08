@@ -1,5 +1,5 @@
 module.exports = {
-  students: [
+  users: [
     {
       id: 1,
       username: 'churrosaurio17',
@@ -36,8 +36,4 @@ module.exports = {
       password: '123456'
     }
   ],
-  users: [{
-    username: 'churrosaurio17',
-    password: '$2b$10$PwfF8Xkrx0mEv99We9KYiuHReqBpZusrh0qlJe29QJm.2ysq3Ld2'
-  }],
 }

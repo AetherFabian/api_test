@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 
-const database = require('./database');
+const database = require('../../../database');
 
 function runQueries(req, method) {
   const { username, password, email, name } = req.body;
