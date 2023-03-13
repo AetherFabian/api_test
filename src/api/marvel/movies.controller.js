@@ -1,4 +1,5 @@
 const { findAllMovies, findOneMovie, createNewMovie, updateMovieById, deleteMovieById } = require('./movies.service');
+const to = require('await-to-js').default;
 
 const getAllMovies = async (req, res, next) => {
   const [err, movies] = await to(findAllMovies());

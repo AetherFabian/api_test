@@ -1,8 +1,29 @@
 const { createUser, findUser } = require('./users.repository');
+const brypt = require('bcrypt');
+const to = require('await-to-js').default;
 
-const login = async () => {
-  const { username, password } = req.body;
-  const user = await findUser(username, password);
-  if (!user) return res.status(404).send('User not found');
-  res.send(user);
+const login = async (email, password) => {
+  const [err, userPassword] = await to(findUser(email));
+  console.log('password',userPassword)
+  if (err) {
+    throw err;
+  }
+  
+  return await brypt.compare(password, userPassword);
+}
+
+const register = async (email, password) => {
+  const hashedPassword = await brypt.hash(password, 10);
+  const [err] = await to(createUser(email, hashedPassword));
+
+  if (err) {
+    return false;
+  }
+
+  return true;
+}
+
+module.exports = {
+  login,
+  register
 }
