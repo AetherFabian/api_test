@@ -4,9 +4,8 @@ const to = require('await-to-js').default;
 
 const login = async (email, password) => {
   const [err, userPassword] = await to(findUser(email));
-  console.log('password',userPassword)
-  if (err) {
-    throw err;
+  if (!userPassword) {
+    return false;
   }
   
   return await brypt.compare(password, userPassword);

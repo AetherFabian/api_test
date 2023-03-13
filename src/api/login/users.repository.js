@@ -7,9 +7,9 @@ const findUser = async (email) => {
   return userPassword.success.recordset[0].pass;
 }
 
-const createUser = async (user) => {
-  const [err, result] = await to(query(`INSERT INTO users (pass, email) VALUES (${user.password}, ${user.email})`));
-  if (err) throw err;
+const createUser = async (email, password) => {
+  const [err, result] = await to(query(`INSERT INTO users (pass, email) VALUES ('${password}', '${email}')`));
+  if (!result) return false;
   return true;
 }
 
