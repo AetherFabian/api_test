@@ -8,25 +8,25 @@ const findMovies = async () => {
 }
 
 const findMovie = async (id) => {
-  const [err, movie] = await to(query(`SELECT * FROM marvelMovies WHERE id = ${id}`));
+  const [err, movie] = await to(query(`SELECT * FROM marvelMovies WHERE id = '${id}'`));
   if (err) throw err;
   return movie;
 }
 
 const createMovie = async (movie) => {
-  const [err, result] = await to(query(`INSERT INTO marvelMovies (id, name, releaseYear, director, rating, url) VALUES (${movie.id}, ${movie.name}, ${movie.releaseYear}, ${movie.director}, ${movie.rating}, ${movie.url})`));
+  const [err, result] = await to(query(`INSERT INTO marvelMovies (id, name, releaseYear, director, rating, url) VALUES ('${movie.id}', '${movie.name}', '${movie.releaseYear}', '${movie.director}', '${movie.rating}', '${movie.url}')`));
   if (err) throw err;
   return result;
 }
 
 const updateMovie = async (id, movie) => {
-  const [err, result] = await to(query(`UPDATE marvelMovies SET name = ${movie.name}, releaseYear = ${movie.releaseYear}, director = ${movie.director}, rating = ${movie.rating}, url = ${movie.url} WHERE id = ${id}`));
+  const [err, result] = await to(query(`UPDATE marvelMovies SET name = '${movie.name}', releaseYear = '${movie.releaseYear}', director = '${movie.director}', rating = '${movie.rating}', url = '${movie.url}' WHERE id = '${id}'`));
   if (err) throw err;
   return result;
 }
 
 const deleteMovie = async (id) => {
-  const [err, result] = await to(query(`DELETE FROM marvelMovies WHERE id = ${id}`));
+  const [err, result] = await to(query(`DELETE FROM marvelMovies WHERE id = '${id}'`));
   if (err) throw err;
   return result;
 }
