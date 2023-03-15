@@ -4,13 +4,13 @@ const to = require('await-to-js').default;
 const findAllMovies = async () => {
   const [err, movies] = await to(findMovies());
   if (err) throw err;
-  return movies;
+  return movies.success.recordset;
 }
 
 const findOneMovie = async (id) => {
   const [err, movie] = await to(findMovie(id));
   if (err) throw err;
-  return movie;
+  return movie.success.recordset;
 }
 
 const createNewMovie = async (movie) => {
@@ -22,7 +22,7 @@ const createNewMovie = async (movie) => {
 const updateMovieById = async (id, movie) => {
   const [err, result] = await to(updateMovie(id, movie));
   if (err) throw err;
-  return result;
+  return result.success.recordset;
 }
 
 const deleteMovieById = async (id) => {
