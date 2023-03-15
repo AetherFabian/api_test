@@ -5,8 +5,8 @@ const { getAllMovies, getMovieById, createMovie, updateMovie, deleteMovie } = re
 router
   .get('/', getAllMovies)
   .get('/:id', getMovieById)
-  .post('/', createMovie)
-  .put('/:id', updateMovie)
-  .delete('/:id', deleteMovie);
+  //.post('/', createMovie)
+  //.put('/:id', updateMovie)
+  //.delete('/:id', deleteMovie);
 
 module.exports = router;
