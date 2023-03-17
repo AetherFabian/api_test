@@ -19,9 +19,9 @@ const registerUser = async (req, res) => {
   const { email, password } = req.body;
   const [err, result] = await to(register(email, password));
 
-  if (!result) {
+  if (err) {
     return res.status(400).json({
-      success: result,
+      success: err.message,
     });
   }
 

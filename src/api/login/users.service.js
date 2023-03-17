@@ -13,13 +13,10 @@ const login = async (email, password) => {
 
 const register = async (email, password) => {
   const hashedPassword = await brypt.hash(password, 10);
-  const [err] = await to(createUser(email, hashedPassword));
+  const [err, result] = await to(createUser(email, hashedPassword));
+  if (err) throw err;
 
-  if (err) {
-    return false;
-  }
-
-  return true;
+  return result;
 }
 
 module.exports = {

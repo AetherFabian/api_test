@@ -9,7 +9,7 @@ const findUser = async (email) => {
 
 const createUser = async (email, password) => {
   const [err, result] = await to(query(`INSERT INTO users (pass, email) VALUES ('${password}', '${email}')`));
-  if (!result) return false;
+  if (err) throw err;
   return true;
 }
 
