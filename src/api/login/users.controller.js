@@ -5,13 +5,18 @@ const loginUser = async (req, res) => {
   const { email, password } = req.body;
   const [err, result] = await to(login(email, password));
   if (err) {
-    return res.status(400).json({
-      success: false,
+    return res.status(500).json({
+      success: err.message,
     });
   }
 
+  if (!result) {
+    return res.status(401).json({
+      success: result
+    });
+  }
   return res.status(200).json({
-    success: true,
+    success: result,
   });
 }
 
