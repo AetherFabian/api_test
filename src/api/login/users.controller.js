@@ -4,7 +4,6 @@ const to = require('await-to-js').default;
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
   const [err, result] = await to(login(email, password));
-  console.log("me lo paso por el culo", result, err)
   if (err) {
     return res.status(500).json({
       success: false,
