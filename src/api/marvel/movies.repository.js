@@ -14,7 +14,7 @@ const findMovie = async (id) => {
 }
 
 const createMovie = async (movie) => {
-  const [err, result] = await to(query(`INSERT INTO marvelMovies (name, releaseYear, director, rating, url) VALUES ('${movie.name}', '${movie.releaseYear}', '${movie.director}', '${movie.rating}', '${movie.url}')`));
+  const [err, result] = await to(query(`INSERT INTO marvelMovies (name, releaseYear, director, rating, url, description) VALUES ('${movie.name}', '${movie.releaseYear}', '${movie.director}', '${movie.rating}', '${movie.url}' , '${movie.description}')`));
   if (err) throw err;
   return result;
 }

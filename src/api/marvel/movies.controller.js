@@ -18,7 +18,7 @@ const createMovie = async (req, res, next) => {
   const movie = req.body;
   const [err, result] = await to(createNewMovie(movie));
   if (err) return next(err);
-  return res.status(201).json({ result });
+  return res.status(201).json({ response: "Movie created" });
 }
 
 const updateMovie = async (req, res, next) => {
@@ -26,14 +26,14 @@ const updateMovie = async (req, res, next) => {
   const movie = req.body;
   const [err, result] = await to(updateMovieById(id, movie));
   if (err) return next(err);
-  return res.status(200).json({ result });
+  return res.status(200).json({ response: "Movie updated" });
 }
 
 const deleteMovie = async (req, res, next) => {
   const { id } = req.params;
   const [err, result] = await to(deleteMovieById(id));
   if (err) return next(err);
-  return res.status(200).json({ result });
+  return res.status(200).json({ response: "Movie deleted" });
 }
 
 module.exports = {
