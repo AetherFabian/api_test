@@ -2,7 +2,7 @@ const sql = require('mssql');
 const config = require('./config');
 
 module.exports = async (query) => {
-  let result = null;
+  let response = null;
   const pool = new sql.ConnectionPool(config.databases[0]);
   pool.on('error', err => {
     console.log(err);
@@ -10,17 +10,17 @@ module.exports = async (query) => {
   try {
     await pool.connect();
     const result = await pool.request().query(query);
-    result = {
+    response = {
       success: result
     };
   } catch (err) {
-    result = err;
+    response = err;
     console.log(err)
   } finally {
     await pool.close();
   }
-  if (result instanceof Error) {
-    throw result;
+  if (response instanceof Error) {
+    throw response;
   }
-  return result;
+  return response;
 }

@@ -4,15 +4,17 @@ const to = require('await-to-js').default;
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
   const [err, result] = await to(login(email, password));
+  console.log("me lo paso por el culo", result, err)
   if (err) {
     return res.status(500).json({
-      success: err.message,
+      success: false,
+      err: err.message
     });
   }
-
   if (!result) {
     return res.status(401).json({
-      success: result
+      success: false,
+      err: result
     });
   }
   return res.status(200).json({
@@ -26,7 +28,8 @@ const registerUser = async (req, res) => {
 
   if (err) {
     return res.status(400).json({
-      success: err.message,
+      err: err.message,
+      success: false
     });
   }
 
